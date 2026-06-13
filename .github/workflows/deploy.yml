@@ -36,13 +36,13 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/vuna-calculator:latest
 
-      # Step 5: Securely connect to Abraham's correct folder over SSH
+      # Step 5: Securely connect to Abraham's folder over SSH
       - name: Execute Remote SSH Pull
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: '${{ secrets.SERVER_HOST }}'
           username: '${{ secrets.SERVER_USER }}'
-          password: '${{ secrets.SERVER_PASSWORD }}'
+          password: '${{ secrets.SERVER_PASSWORD }}' # Enforcing single quotes protects the hash symbols!
           port: 22
           script: |
             # Safely clear out any old files in his server folder
